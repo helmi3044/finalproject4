@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Final Project 1 Deployment</title>
+</head>
+
+<body>
+    <div class="form">
+        <div class="navigasi_kiri">
+            <img src="https://www.hacktiv8.com/images/logo/hacktiv8-dark.webp">
+            <ul>
+                <li><a href="https://helmi3044.github.io/ClusteringCreditCardUsers/">Dashboard</a></li>
+                <li><a href="https://helmi3044.github.io/ClusteringCreditCardUsers/cluster.html">Clusters</a></li>
+                <li><a href="main.html">Predict</a></li>
+                <li><a href="https://helmi3044.github.io/ClusteringCreditCardUsers/team.html">Team</a></li>
+                <li><a href="https://helmi3044.github.io/ClusteringCreditCardUsers/conclusion.html">Conclusion</a></li>
+            </ul>
+        </div>
+        <h1>Prediksi Clustering Pengguna Kartu Kredit</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="Saldo" placeholder="Jumlah Saldo Pengguna (exp : 40.9321)" required="required" />
+            <input type="text" name="Pembelian" placeholder="Jumlah Pembelian yang Dilakukan Pengguna (exp : 16.0)" required="required" />
+            <input type="text" name="PembelianOneoff" placeholder="Banyaknya Satu Kali Pembelian yang Dilakukan Pengguna (exp : 16.0)" required="required" />
+            <input type="text" name="PembelianAngsuran" placeholder="Jumlah Pembelian Angsuran yang Dilakukan Pengguna (exp : 95.0)" required="required" />
+            <input type="text" name="Penarikan" placeholder="Jumlah Penarikan Tunai yang Dilakukan Pengguna (exp : 205.23)" required="required" />
+            <input type="text" name="BatasKredit" placeholder="Jumlah Batas Kredit Pengguna (exp : 7000.0)" required="required" />
+            <input type="text" name="Pembayaran" placeholder="Jumlah Pembayaran yang Harus Dibayarkan Pengguna (exp : 312.87)" required="required" />
+            <input type="text" name="MinPembayaran" placeholder="Jumlah Minimal Pembayaran yang Harus Dibayarkan Pengguna (exp : 1072.87)" required="required" />
+            <select name="JangkaWaktu" style="font-family: Roboto, sans-serif;outline: 0; background: #f2f2f2; width: 100%; border: 0; margin: 5px 0 15px; padding: 15px; box-sizing: border-box; font-size: 14px;">
+                <option disabled="disabled" selected="selected">Jangka Waktu Pengguna Kredit</option>
+                <option value="6">6 Bulan</option>
+                <option value="7">7 Bulan</option>
+                <option value="8">8 Bulan</option>
+                <option value="9">9 Bulan</option>
+                <option value="10">10 Bulan</option>
+                <option value="11">11 Bulan</option>
+                <option value="12">12 Bulan</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <br>
+        <b class="message" style="color: #272e16; text-align: center; font-size: 15px;">{{ prediction_text }}</b>
+    </div>
+
+</body>
+
+</html>
